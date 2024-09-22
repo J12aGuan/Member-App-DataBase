@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 3000;
 // Enable CORS
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the Calendar API');
+});
+
 const filePath = path.join(__dirname, 'member-app-8683b-aa412b322788.json');
 const serviceAccountKey = JSON.parse(fs.readFileSync(filePath, 'utf8')); // Parse the JSON
 
