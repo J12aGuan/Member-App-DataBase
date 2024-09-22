@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Calendar API');
 });
 
-const filePath = path.join(__dirname, 'member-app-8683b-aa412b322788.json');
+const filePath = path.join(__dirname, 'Google Calendar/member-app-8683b-aa412b322788.json');
 const serviceAccountKey = JSON.parse(fs.readFileSync(filePath, 'utf8')); // Parse the JSON
 
 // Google Calendar API setup
@@ -51,7 +51,7 @@ const auth = new google.auth.GoogleAuth({
   
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
 // const http = require('http');
