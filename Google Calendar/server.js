@@ -17,39 +17,39 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Calendar API');
 });
 
-const filePath = path.join(__dirname, 'member-app-8683b-aa412b322788.json');
-const serviceAccountKey = JSON.parse(fs.readFileSync(filePath, 'utf8')); // Parse the JSON
+// const filePath = path.join(__dirname, 'member-app-8683b-aa412b322788.json');
+// const serviceAccountKey = JSON.parse(fs.readFileSync(filePath, 'utf8')); // Parse the JSON
 
-// Google Calendar API setup
-const auth = new google.auth.GoogleAuth({
-    credentials: serviceAccountKey,
-    scopes: ['https://www.googleapis.com/auth/calendar.readonly'],
-  });
+// // Google Calendar API setup
+// const auth = new google.auth.GoogleAuth({
+//     credentials: serviceAccountKey,
+//     scopes: ['https://www.googleapis.com/auth/calendar.readonly'],
+//   });
   
-  const calendar = google.calendar({ version: 'v3', auth });
+//   const calendar = google.calendar({ version: 'v3', auth });
   
-  // Endpoint to get calendar events
-  app.get('/events', async (req, res) => {
-    try {
-        const calendarId = 'info@steme.org'; // Replace with your calendar ID
-        const events = await calendar.events.list({
-            calendarId: calendarId,
-            timeMin: new Date().toISOString(), // Get events from today onwards
-            maxResults: 10, // Limit results
-            singleEvents: true,
-            orderBy: 'startTime',
-        });
+//   // Endpoint to get calendar events
+//   app.get('/events', async (req, res) => {
+//     try {
+//         const calendarId = 'info@steme.org'; // Replace with your calendar ID
+//         const events = await calendar.events.list({
+//             calendarId: calendarId,
+//             timeMin: new Date().toISOString(), // Get events from today onwards
+//             maxResults: 10, // Limit results
+//             singleEvents: true,
+//             orderBy: 'startTime',
+//         });
         
-        console.log('Events from Google Calendar:', events.data.items);
+//         console.log('Events from Google Calendar:', events.data.items);
         
-        res.json(events.data.items);
-    } catch (error) {
-        console.error('Error fetching events:', error);
-        res.status(500).send('Error fetching events');
-    }
-});
+//         res.json(events.data.items);
+//     } catch (error) {
+//         console.error('Error fetching events:', error);
+//         res.status(500).send('Error fetching events');
+//     }
+// });
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
   
 // Start the server
 app.listen(PORT, () => {
