@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 // Enable CORS
 app.use(cors());
 
-const filePath = path.join(__dirname, 'ancient-episode-434908-n0-14af310195a9.json');
+const filePath = path.join(__dirname, 'member-app-8683b-aa412b322788.json');
 const serviceAccountKey = JSON.parse(fs.readFileSync(filePath, 'utf8')); // Parse the JSON
 
 // Google Calendar API setup
@@ -27,7 +27,7 @@ const auth = new google.auth.GoogleAuth({
   // Endpoint to get calendar events
   app.get('/events', async (req, res) => {
     try {
-        const calendarId = 'jiaming1120892152@gmail.com'; // Replace with your calendar ID
+        const calendarId = 'info@steme.org'; // Replace with your calendar ID
         const events = await calendar.events.list({
             calendarId: calendarId,
             timeMin: new Date().toISOString(), // Get events from today onwards
