@@ -48,6 +48,8 @@ const auth = new google.auth.GoogleAuth({
         res.status(500).send('Error fetching events');
     }
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
   
 // Start the server
 app.listen(PORT, () => {
