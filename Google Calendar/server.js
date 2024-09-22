@@ -1,21 +1,21 @@
-const express = require('express');
-const { google } = require('googleapis');
-const { readFileSync } = require('fs');
-const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
+// const express = require('express');
+// const { google } = require('googleapis');
+// const { readFileSync } = require('fs');
+// const cors = require('cors');
+// const path = require('path');
+// const fs = require('fs');
 
 
-// Initialize Express app
-const app = express();
-const PORT = process.env.PORT || 3000;
+// // Initialize Express app
+// const app = express();
+// const PORT = process.env.PORT || 3000;
 
-// Enable CORS
-app.use(cors());
+// // Enable CORS
+// app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the Calendar API');
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the Calendar API');
+// });
 
 // const filePath = path.join(__dirname, 'member-app-8683b-aa412b322788.json');
 // const serviceAccountKey = JSON.parse(fs.readFileSync(filePath, 'utf8')); // Parse the JSON
@@ -52,6 +52,16 @@ app.get('/', (req, res) => {
 // app.use(express.static(path.join(__dirname, 'public')));
   
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
+
+const http = require('http');
+const port = process.env.PORT || 3000;
+
+http.createServer(function(request, response) {
+  response.writeHead(200, { 'Content-Type': 'text/plain' });
+  response.end('Hello World!');
+}).listen(port);
+
+console.log(`Server running at http://localhost:${port}`);
