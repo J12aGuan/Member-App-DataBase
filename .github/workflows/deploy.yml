@@ -1,0 +1,41 @@
+name: Deploy to Azure and Access Google Calendar
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  access-google-calendar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Adjust the version as per your requirement
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set up Google Cloud credentials
+        run: echo "${{ secrets.GCP_CREDENTIALS }}" > google-credentials.json
+
+      - name: Access Google Calendar
+        run: |
+          node server.js  # Replace with your JavaScript file name
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: <STEM-E MemberApp>  # Replace with your Azure Web App name
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: .
