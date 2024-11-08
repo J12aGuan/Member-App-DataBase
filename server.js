@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Calendar API');
 });
 
-const filePath = path.join(__dirname, 'Google Calendar/member-app-8683b-d64eea371dd8.json');
+const filePath = path.join(__dirname, 'Google Calendar/ancient-episode-434908-n0-45e92e8dc336.json');
 const serviceAccountKey = JSON.parse(fs.readFileSync(filePath, 'utf8')); // Parse the JSON
 
 // Google Calendar API setup
