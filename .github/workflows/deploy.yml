@@ -32,6 +32,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  # Explicitly define the subscription ID
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
