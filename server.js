@@ -82,6 +82,24 @@ app.get('/orientations', async (req, res) => {
     res.status(500).send('Error fetching events');
   }
 });
+
+app.get('/meetings', async (req, res) => {
+  try {
+    const calendarId = 'c_fp46s2vf15920t1ovfckfnpdkk@group.calendar.google.com'; // Replace with your calendar ID
+    const events = await calendar.events.list({
+      calendarId: calendarId,
+      timeMin: new Date().toISOString(), // Get events from today onwards
+      maxResults: 10, // Limit results
+      singleEvents: true,
+      orderBy: 'startTime',
+    });
+    
+    res.json(events.data.items);
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    res.status(500).send('Error fetching events');
+  }
+});
   
 // Start the server
 app.listen(PORT, () => {
